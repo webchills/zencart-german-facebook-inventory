@@ -6,12 +6,12 @@
  * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: facebookinventory.php 2022-02-24 16:40:54Z webchills $
+ * @version $Id: facebookinventory.php 2022-03-28 14:56:54Z webchills $
  */
  
   class facebookinventory {
     // writes out the code into the feed file
-    function facebookinventory_fwrite($output='', $mode) {
+    function facebookinventory_fwrite($output='', $mode='') {
       global $outfile;
       $output = implode("\n", $output);
       if(strtolower(CHARSET) != 'utf-8') {

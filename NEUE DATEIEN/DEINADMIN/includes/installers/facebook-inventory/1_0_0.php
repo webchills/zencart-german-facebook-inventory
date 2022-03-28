@@ -2,11 +2,11 @@
 /**
  * @package Facebook Inventory
  * based on Google Merchant Center Feeder Copyright 2007 Numinix Technology (www.numinix.com)
- * @copyright Copyright 2011-2021 webchills (www.webchills.at)
- * @copyright Portions Copyright 2003-2021 Zen Cart Development Team
+ * @copyright Copyright 2011-2022 webchills (www.webchills.at)
+ * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: 1_0_0.php 2021-08-07 19:11:54Z webchills $
+ * @version $Id: 1_0_0.php 2022-03-28 15:03:54Z webchills $
  */
 
 
@@ -51,6 +51,7 @@ $db->Execute("INSERT IGNORE INTO ".TABLE_CONFIGURATION." (configuration_title, c
 ('Sicherheitsschlüssel', 'FACEBOOKINVENTORY_KEY', '".md5(time() . rand(0,99999))."', 'Geben Sie eine zufällige Folge von Ziffern und Buchstaben ein, um sicherzustellen, dass nur der Admin das Produktfeed generieren kann.', @gid, 37, NOW(), NULL, NULL)");
 
 // add configuration/tools menu
+$admin_page = 'configFacebookInventory';
 if (!zen_page_key_exists($admin_page)) {
 $db->Execute(" SELECT @gid:=configuration_group_id
 FROM ".TABLE_CONFIGURATION_GROUP."
