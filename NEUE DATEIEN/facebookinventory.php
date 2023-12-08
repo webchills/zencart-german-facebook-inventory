@@ -2,16 +2,16 @@
 /**
  * @package Facebook Inventory
  * based on Google Merchant Center Feeder Copyright 2007 Numinix Technology (www.numinix.com)
- * @copyright Copyright 2011-2022 webchills (www.webchills.at)
+ * @copyright Copyright 2011-2023 webchills (www.webchills.at)
  * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: facebookinventory.php 2022-02-24 16:37:54Z webchills $
+ * @version $Id: facebookinventory.php 2023-12-08 16:37:54Z webchills $
  */
  /* configuration */
   ini_set('max_execution_time', 900); // change to whatever time you need
   ini_set('mysql.connect_timeout', 300); // change to whatever time you need
-  ini_set('memory_limit','128M'); // change to whatever you need
+  ini_set('memory_limit','256M'); // change to whatever you need
   set_time_limit(900); // change to whatever time you need
   $keepAlive = 100;  // perform a keep alive every x number of products
   /* end configuration */  
@@ -151,7 +151,7 @@
                                AND p.product_is_call <> 1
                                AND p.product_is_free <> 1
                                AND pd.language_id = " . (int)$languages->fields['languages_id'] ."                             
-                             GROUP BY pd.products_name
+                             
                              ORDER BY p.products_id ASC" . $limit . $offset . ";";
 
           $products = $db->Execute($products_query);
@@ -278,19 +278,19 @@
                 $content["price"] = '<g:price>' . number_format($price, 2, '.', '') . '</g:price>';
                 
                 if ($products->fields['products_model'] != '') {
-                  $content["mpn"] = '<g:mpn>' . $facebookinventory->facebookinventory_sanita($products->fields['products_model'], true) . '</g:mpn>';
+                  $content["mpn"] = '<g:mpn>' . $products->fields['products_model'] . '</g:mpn>';
                 }
                 if (FACEBOOKINVENTORY_EAN == 'true' && $products->fields['products_ean'] != '') {
-                $content["ean"] = '<g:ean>' . $facebookinventory->facebookinventory_sanita($products->fields['products_ean'], true) . '</g:ean>';
+                $content["ean"] = '<g:ean>' . $products->fields['products_ean'] . '</g:ean>';
                 }
                 if (FACEBOOKINVENTORY_ISBN == 'true' && $products->fields['products_isbn'] != '') {
-                $content["isbn"] = '<g:isbn>' . $facebookinventory->facebookinventory_sanita($products->fields['products_isbn'], true) . '</g:isbn>';
+                $content["isbn"] = '<g:isbn>' . $products->fields['products_isbn'] . '</g:isbn>';
                 }
                 if (FACEBOOKINVENTORY_BRAND == 'true' && $products->fields['products_brand'] != '') {
-                $content["brand"] = '<g:brand>' . $facebookinventory->facebookinventory_sanita($products->fields['products_brand'], true) . '</g:brand>';
+                $content["brand"] = '<g:brand>' . $products->fields['products_brand'] . '</g:brand>';
                 }
                 if (FACEBOOKINVENTORY_BRAND == 'true' && $products->fields['products_brand'] == '') {
-                $content["brand"] = '<g:brand>' . $facebookinventory->facebookinventory_sanita($products->fields['manufacturers_name'], true) . '</g:brand>';
+                $content["brand"] = '<g:brand>' . $products->fields['manufacturers_name'] . '</g:brand>';
                 }
                 // identifier_exists as required from july 2013
                 if (FACEBOOKINVENTORY_EAN == 'true' && $products->fields['products_ean'] == '' && $products->fields['manufacturers_name'] == '') {

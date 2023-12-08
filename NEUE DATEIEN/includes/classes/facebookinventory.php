@@ -2,11 +2,11 @@
 /**
  * @package Facebook Inventory
  * based on Google Merchant Center Feeder Copyright 2007 Numinix Technology (www.numinix.com)
- * @copyright Copyright 2011-2022 webchills (www.webchills.at)
+ * @copyright Copyright 2011-2023 webchills (www.webchills.at)
  * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: facebookinventory.php 2022-03-28 14:56:54Z webchills $
+ * @version $Id: facebookinventory.php 2023-12-08 17:56:54Z webchills $
  */
  
   class facebookinventory {
@@ -179,8 +179,8 @@
         }
       }
       if(isset($p2c[$products_id])) {
-        $retval = $categories_array[$p2c[$products_id]]['name'];
-        $cPath = $categories_array[$p2c[$products_id]]['cPath'];
+        $retval = $categories_array[$p2c[$products_id]]['name'] ?? '';
+        $cPath = $categories_array[$p2c[$products_id]]['cPath'] ?? '';
       } else {
         $cPath = $retval =  "";
       }
