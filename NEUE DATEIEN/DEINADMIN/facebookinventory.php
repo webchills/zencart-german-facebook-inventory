@@ -2,11 +2,11 @@
 /**
  * @package Facebook Inventory
  * based on Google Merchant Center Feeder Copyright 2007 Numinix Technology (www.numinix.com)
- * @copyright Copyright 2011-2022 webchills (www.webchills.at)
+ * @copyright Copyright 2011-2024 webchills (www.webchills.at)
  * @copyright Portions Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: facebookinventory.php 2022-02-24 12:49:54Z webchills $
+ * @version $Id: facebookinventory.php 2024-04-08 15:49:54Z webchills $
  */
 require('includes/application_top.php');
 
@@ -18,23 +18,8 @@ if(isset($_GET['action']) && ($_GET['action'] == 'delete')) {
 }
 ?>
 <html <?php echo HTML_PARAMS; ?>>
-  <head>
-    <meta charset="<?php echo CHARSET; ?>">
-    <title><?php echo TITLE; ?></title>
-    <link rel="stylesheet" href="includes/stylesheet.css">
-    <link rel="stylesheet" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
-    <script src="includes/menu.js"></script>
-    <script src="includes/general.js"></script>
-
-    <script>
-      function init() {
-          cssjsmenu('navbar');
-          if (document.getElementById) {
-              var kill = document.getElementById('hoverJS');
-              kill.disabled = true;
-          }
-      }
-    </script>
+<head>
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
     <script language="javascript"><!--
 function getObject(name) {
    var ns4 = (document.layers) ? true : false;
@@ -97,7 +82,7 @@ function processLoading(text) {
   #columnRight{float:left;margin-left:-350px;width:350px;}
 </style>
 </head>
-<body onLoad="init()" >
+<body>
       <!-- header //-->
       <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
       <!-- header_eof //-->
